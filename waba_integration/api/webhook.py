@@ -8,7 +8,14 @@ def handle():
 	if frappe.request.method == "GET":
 		return verify_token_and_fulfill_challenge()
 
-	# TODO: Handle Post Request
+	try:
+		form_dict = frappe.local.form_dict
+		frappe.get_doc(
+			{"doctype": "WABA Webhook Log", "payload": frappe.as_json(form_dict)}
+		).insert(ignore_permissions=True)
+	except Exception:
+		frappe.log_error("WABA Webhook Log Error", frappe.get_traceback())
+		frappe.throw("Something went wrong")
 
 
 def verify_token_and_fulfill_challenge():
