@@ -1,0 +1,18 @@
+include MANIFEST.in
+include requirements.txt
+include *.json
+include *.md
+include *.py
+include *.txt
+recursive-include waba_integration *.css
+recursive-include waba_integration *.csv
+recursive-include waba_integration *.html
+recursive-include waba_integration *.ico
+recursive-include waba_integration *.js
+recursive-include waba_integration *.json
+recursive-include waba_integration *.md
+recursive-include waba_integration *.png
+recursive-include waba_integration *.py
+recursive-include waba_integration *.svg
+recursive-include waba_integration *.txt
+recursive-exclude waba_integration *.pyc
