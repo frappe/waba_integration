@@ -1,7 +1,6 @@
 {
  "actions": [],
- "allow_rename": 1,
- "autoname": "field:id",
+ "autoname": "hash",
  "creation": "2022-05-22 12:43:17.381824",
  "doctype": "DocType",
  "editable_grid": 1,
@@ -9,9 +8,12 @@
  "field_order": [
   "status",
   "from",
+  "to",
+  "message_type",
   "column_break_3",
   "type",
   "id",
+  "message_body",
   "media_information_section",
   "media_id",
   "media_hash",
@@ -29,17 +31,18 @@
    "options": "Pending\nSent\nDelivered\nRead"
   },
   {
+   "default": "Outgoing",
    "fieldname": "type",
    "fieldtype": "Select",
    "label": "Type",
-   "options": "Text\nImage\nAudio\nVideo\nSystem\nDocument"
+   "options": "Incoming\nOutgoing"
   },
   {
    "fieldname": "id",
    "fieldtype": "Data",
    "in_list_view": 1,
    "label": "Message ID",
-   "reqd": 1,
+   "read_only": 1,
    "unique": 1
   },
   {
@@ -84,15 +87,31 @@
   {
    "fieldname": "column_break_3",
    "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "message_type",
+   "fieldtype": "Select",
+   "label": "Message Type",
+   "options": "Text\nImage\nAudio\nVideo\nSystem\nDocument"
+  },
+  {
+   "fieldname": "message_body",
+   "fieldtype": "Long Text",
+   "label": "Message Body"
+  },
+  {
+   "fieldname": "to",
+   "fieldtype": "Data",
+   "label": "To"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2022-05-22 12:59:47.949687",
+ "modified": "2022-05-22 13:56:39.501740",
  "modified_by": "Administrator",
  "module": "WhatsApp Bussiness API Integration",
  "name": "WABA WhatsApp Message",
- "naming_rule": "By fieldname",
+ "naming_rule": "Random",
  "owner": "Administrator",
  "permissions": [
   {

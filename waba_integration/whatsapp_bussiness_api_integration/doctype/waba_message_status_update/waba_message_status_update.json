@@ -7,6 +7,7 @@
  "engine": "InnoDB",
  "field_order": [
   "message",
+  "message_id",
   "status",
   "timestamp",
   "recipient"
@@ -34,11 +35,16 @@
    "fieldtype": "Link",
    "label": "Recipient",
    "options": "WABA WhatsApp Contact"
+  },
+  {
+   "fieldname": "message_id",
+   "fieldtype": "Data",
+   "label": "Message ID"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2022-05-22 13:05:12.737042",
+ "modified": "2022-05-22 13:21:56.047202",
  "modified_by": "Administrator",
  "module": "WhatsApp Bussiness API Integration",
  "name": "WABA Message Status Update",
