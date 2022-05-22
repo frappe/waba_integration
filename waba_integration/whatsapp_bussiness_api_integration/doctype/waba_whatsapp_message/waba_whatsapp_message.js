@@ -3,14 +3,16 @@
 
 frappe.ui.form.on("WABA WhatsApp Message", {
   refresh: function (frm) {
-    const btn = frm.add_custom_button("Send Message", () => {
-      frm
-        .call({
-          doc: frm.doc,
-          method: "send",
-          btn,
-        })
-        .then((m) => frm.refresh());
-    });
+    if (!frm.doc.id) {
+      const btn = frm.add_custom_button("Send Message", () => {
+        frm
+          .call({
+            doc: frm.doc,
+            method: "send",
+            btn,
+          })
+          .then((m) => frm.refresh());
+      });
+    }
   },
 });
