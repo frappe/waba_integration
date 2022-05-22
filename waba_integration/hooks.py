@@ -1,9 +1,9 @@
 from . import __version__ as app_version
 
 app_name = "waba_integration"
-app_title = "WhatsApp Bussiness API Integration"
+app_title = "WhatsApp Business API Integration"
 app_publisher = "Hussain Nagaria"
-app_description = "Work with WhatsApp Bussiness Cloud API from your Frappe site"
+app_description = "Work with WhatsApp Business Cloud API from your Frappe site"
 app_email = "hussain@frappe.io"
 app_license = "MIT"
 
