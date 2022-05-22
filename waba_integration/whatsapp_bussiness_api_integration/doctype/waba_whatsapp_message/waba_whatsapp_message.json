@@ -1,0 +1,114 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "field:id",
+ "creation": "2022-05-22 12:43:17.381824",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "status",
+  "from",
+  "column_break_3",
+  "type",
+  "id",
+  "media_information_section",
+  "media_id",
+  "media_hash",
+  "media_mime_type",
+  "column_break_9",
+  "media_filename",
+  "media_caption"
+ ],
+ "fields": [
+  {
+   "default": "Pending",
+   "fieldname": "status",
+   "fieldtype": "Select",
+   "label": "Status",
+   "options": "Pending\nSent\nDelivered\nRead"
+  },
+  {
+   "fieldname": "type",
+   "fieldtype": "Select",
+   "label": "Type",
+   "options": "Text\nImage\nAudio\nVideo\nSystem\nDocument"
+  },
+  {
+   "fieldname": "id",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Message ID",
+   "reqd": 1,
+   "unique": 1
+  },
+  {
+   "fieldname": "from",
+   "fieldtype": "Data",
+   "label": "From"
+  },
+  {
+   "fieldname": "media_id",
+   "fieldtype": "Data",
+   "label": "Media ID"
+  },
+  {
+   "fieldname": "media_hash",
+   "fieldtype": "Data",
+   "label": "Media Hash"
+  },
+  {
+   "fieldname": "media_mime_type",
+   "fieldtype": "Data",
+   "label": "Media MIME Type"
+  },
+  {
+   "fieldname": "media_filename",
+   "fieldtype": "Data",
+   "label": "Media Filename"
+  },
+  {
+   "fieldname": "media_caption",
+   "fieldtype": "Data",
+   "label": "Media Caption"
+  },
+  {
+   "fieldname": "media_information_section",
+   "fieldtype": "Section Break",
+   "label": "Media Information"
+  },
+  {
+   "fieldname": "column_break_9",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "column_break_3",
+   "fieldtype": "Column Break"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2022-05-22 12:59:47.949687",
+ "modified_by": "Administrator",
+ "module": "WhatsApp Bussiness API Integration",
+ "name": "WABA WhatsApp Message",
+ "naming_rule": "By fieldname",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}
