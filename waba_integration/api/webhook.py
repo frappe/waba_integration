@@ -1,4 +1,8 @@
 import frappe
+from waba_integration.whatsapp_bussiness_api_integration.doctype.waba_whatsapp_message.waba_whatsapp_message import (
+	create_waba_whatsapp_message,
+	process_status_update,
+)
 
 from werkzeug.wrappers import Response
 
@@ -10,6 +14,15 @@ def handle():
 
 	try:
 		form_dict = frappe.local.form_dict
+		messages = form_dict["entry"][0]["changes"][0]["value"]["messages"]
+		statuses = form_dict["entry"][0]["changes"][0]["value"]["statuses"]
+
+		for status in statuses:
+			process_status_update(status)
+
+		for message in messages:
+			create_waba_whatsapp_message(message)
+
 		frappe.get_doc(
 			{"doctype": "WABA Webhook Log", "payload": frappe.as_json(form_dict)}
 		).insert(ignore_permissions=True)

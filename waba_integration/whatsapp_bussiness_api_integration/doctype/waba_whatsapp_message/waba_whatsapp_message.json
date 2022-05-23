@@ -27,6 +27,7 @@
    "default": "Pending",
    "fieldname": "status",
    "fieldtype": "Select",
+   "in_list_view": 1,
    "label": "Status",
    "options": "Pending\nSent\nDelivered\nRead"
   },
@@ -91,6 +92,7 @@
   {
    "fieldname": "message_type",
    "fieldtype": "Select",
+   "in_list_view": 1,
    "label": "Message Type",
    "options": "Text\nImage\nAudio\nVideo\nSystem\nDocument"
   },
@@ -107,7 +109,7 @@
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2022-05-22 13:56:39.501740",
+ "modified": "2022-05-23 13:51:21.280665",
  "modified_by": "Administrator",
  "module": "WhatsApp Bussiness API Integration",
  "name": "WABA WhatsApp Message",

@@ -36,7 +36,43 @@ class WABAWhatsAppMessage(Document):
 
 		if response.ok:
 			self.id = response.json().get("messages")[0]["id"]
+			self.status = "Sent"
 			self.save(ignore_permissions=True)
 			return response.json()
 		else:
 			frappe.throw(response.json().get("error").get("message"))
+
+
+def create_waba_whatsapp_message(message):
+	message_type = message.get("type")
+	message_data = frappe._dict(
+		{
+			"doctype": "WABA WhatsApp Message",
+			"type": "Incoming",
+			"from": message.get("from"),
+			"id": message.get("id"),
+			"message_type": message_type.title(),
+		}
+	)
+
+	if message_type == "text":
+		message_data["body"] = message.get("text").get("body")
+	elif message_type in ("image", "sticker", "document"):
+		message_data["media_id"] = message.get(message_type).get("id")
+		message_data["media_mime_type"] = message.get(message_type).get("mime_type")
+		message_data["media_hash"] = message.get(message_type).get("sha256")
+
+	if message_type == "document":
+		message_data["media_filename"] = message.get("document").get("filename")
+		message_data["media_caption"] = message.get("document").get("caption")
+
+	return frappe.get_doc(message_data).insert(ignore_permissions=True)
+
+
+def process_status_update(status):
+	message_id = status.get("id")
+	status = status.get("status")
+
+	frappe.db.set_value(
+		"WABA WhatsApp Message", {"id": message_id}, "status", status.title()
+	)
