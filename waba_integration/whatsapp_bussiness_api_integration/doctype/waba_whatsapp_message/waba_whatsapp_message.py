@@ -120,7 +120,13 @@ def create_waba_whatsapp_message(message):
 		"WABA Settings", "automatically_download_images"
 	)
 	if message_doc.message_type == "Image" and wants_automatic_image_downloads:
-		message_doc.download_media()
+		try:
+			current_user = frappe.session.user
+			frappe.set_user("Administrator")
+			message_doc.download_media()
+			frappe.set_user(current_user)
+		except:
+			frappe.log_error("WABA: Problem downloading image", frappe.get_traceback())
 
 	return message_doc
 
