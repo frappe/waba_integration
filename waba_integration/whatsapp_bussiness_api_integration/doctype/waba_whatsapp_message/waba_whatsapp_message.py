@@ -120,7 +120,8 @@ def create_waba_whatsapp_message(message):
 		"WABA Settings", "automatically_download_images"
 	)
 	if message_doc.message_type == "Image" and wants_automatic_image_downloads:
-		frappe.enqueue_doc("WABA WhatsApp Message", message_doc.name, "download_media")
+		message_doc.download_media()
+
 	return message_doc
 
 
