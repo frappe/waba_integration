@@ -10,7 +10,9 @@ from frappe.model.document import Document
 class WABAWhatsAppMessage(Document):
 	@frappe.whitelist()
 	def send(self):
-		# Get the API base URL
+		if not self.to:
+			frappe.throw("Recepient (`to`) is required to send message.")
+
 		access_token = frappe.utils.password.get_decrypted_password(
 			"WABA Settings", "WABA Settings", "access_token"
 		)
@@ -24,7 +26,7 @@ class WABAWhatsAppMessage(Document):
 			json={
 				"messaging_product": "whatsapp",
 				"recipient_type": "individual",
-				"to": "919691048211",
+				"to": self.to,
 				"type": "text",
 				"text": {"preview_url": False, "body": self.message_body},
 			},

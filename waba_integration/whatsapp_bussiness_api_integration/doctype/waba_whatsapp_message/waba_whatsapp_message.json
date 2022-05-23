@@ -102,7 +102,7 @@
   },
   {
    "fieldname": "message_body",
-   "fieldtype": "Long Text",
+   "fieldtype": "Markdown Editor",
    "label": "Message Body"
   },
   {
@@ -135,7 +135,7 @@
  "image_field": "media_image",
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2022-05-23 20:46:01.817826",
+ "modified": "2022-05-23 23:41:44.077886",
  "modified_by": "Administrator",
  "module": "WhatsApp Bussiness API Integration",
  "name": "WABA WhatsApp Message",
