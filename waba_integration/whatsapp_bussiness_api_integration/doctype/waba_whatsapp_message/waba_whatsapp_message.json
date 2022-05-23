@@ -6,6 +6,9 @@
  "editable_grid": 1,
  "engine": "InnoDB",
  "field_order": [
+  "image_preview",
+  "media_image",
+  "section_break_3",
   "status",
   "from",
   "to",
@@ -111,11 +114,28 @@
    "fieldname": "media_file",
    "fieldtype": "Attach",
    "label": "Media File"
+  },
+  {
+   "fieldname": "image_preview",
+   "fieldtype": "Image",
+   "label": "Image Preview",
+   "options": "media_image"
+  },
+  {
+   "fieldname": "media_image",
+   "fieldtype": "Attach Image",
+   "hidden": 1,
+   "label": "Media Image"
+  },
+  {
+   "fieldname": "section_break_3",
+   "fieldtype": "Section Break"
   }
  ],
+ "image_field": "media_image",
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2022-05-23 16:33:11.118102",
+ "modified": "2022-05-23 20:46:01.817826",
  "modified_by": "Administrator",
  "module": "WhatsApp Bussiness API Integration",
  "name": "WABA WhatsApp Message",

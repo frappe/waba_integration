@@ -7,7 +7,8 @@
  "editable_grid": 1,
  "engine": "InnoDB",
  "field_order": [
-  "whatsapp_id"
+  "whatsapp_id",
+  "display_name"
  ],
  "fields": [
   {
@@ -17,11 +18,17 @@
    "label": "WhatsApp ID",
    "reqd": 1,
    "unique": 1
+  },
+  {
+   "fieldname": "display_name",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Display Name"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2022-05-22 13:04:43.752636",
+ "modified": "2022-05-23 17:12:25.523271",
  "modified_by": "Administrator",
  "module": "WhatsApp Bussiness API Integration",
  "name": "WABA WhatsApp Contact",
@@ -43,5 +50,6 @@
  ],
  "sort_field": "modified",
  "sort_order": "DESC",
- "states": []
+ "states": [],
+ "title_field": "display_name"
 }

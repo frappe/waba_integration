@@ -81,6 +81,11 @@ class WABAWhatsAppMessage(Document):
 		).insert()
 
 		self.set("media_file", file_doc.file_url)
+
+		# Will be used to display image preview
+		if self.message_type == "Image":
+			self.set("media_image", file_doc.file_url)
+
 		self.save()
 
 		return file_doc.as_dict()
@@ -109,7 +114,14 @@ def create_waba_whatsapp_message(message):
 		message_data["media_filename"] = message.get("document").get("filename")
 		message_data["media_caption"] = message.get("document").get("caption")
 
-	return frappe.get_doc(message_data).insert(ignore_permissions=True)
+	message_doc = frappe.get_doc(message_data).insert(ignore_permissions=True)
+
+	wants_automatic_image_downloads = frappe.db.get_single_value(
+		"WABA Settings", "automatically_download_images"
+	)
+	if message_doc.message_type == "Image" and wants_automatic_image_downloads:
+		frappe.enqueue_doc("WABA WhatsApp Message", message_doc.name, "download_media")
+	return message_doc
 
 
 def process_status_update(status):

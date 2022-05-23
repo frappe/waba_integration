@@ -8,9 +8,14 @@
  "field_order": [
   "access_token",
   "phone_number_id",
+  "api_base",
+  "column_break_4",
   "business_account_id",
   "webhook_verify_token",
-  "api_base"
+  "attachment_preferences_section",
+  "automatically_download_images",
+  "column_break_9",
+  "automatically_download_documents"
  ],
  "fields": [
   {
@@ -40,12 +45,37 @@
    "fieldtype": "Data",
    "label": "API Base",
    "options": "URL"
+  },
+  {
+   "default": "0",
+   "fieldname": "automatically_download_images",
+   "fieldtype": "Check",
+   "label": "Automatically Download Images"
+  },
+  {
+   "default": "0",
+   "fieldname": "automatically_download_documents",
+   "fieldtype": "Check",
+   "label": "Automatically Download Documents"
+  },
+  {
+   "fieldname": "column_break_4",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "attachment_preferences_section",
+   "fieldtype": "Section Break",
+   "label": "Attachment Preferences"
+  },
+  {
+   "fieldname": "column_break_9",
+   "fieldtype": "Column Break"
   }
  ],
  "index_web_pages_for_search": 1,
  "issingle": 1,
  "links": [],
- "modified": "2022-05-22 13:10:47.369624",
+ "modified": "2022-05-23 18:24:16.785303",
  "modified_by": "Administrator",
  "module": "WhatsApp Bussiness API Integration",
  "name": "WABA Settings",
