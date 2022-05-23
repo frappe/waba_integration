@@ -78,7 +78,7 @@ class WABAWhatsAppMessage(Document):
 				"attached_to_name": self.name,
 				"attached_to_field": "media_file",
 			}
-		).insert()
+		).insert(ignore_permissions=True)
 
 		self.set("media_file", file_doc.file_url)
 
