@@ -66,10 +66,13 @@ class WABAWhatsAppMessage(Document):
 			},
 		)
 
+		file_name = self.media_filename or (
+			"attachment_." + response.headers.get("Content-Type").split("/")[1]
+		)
 		file_doc = frappe.get_doc(
 			{
 				"doctype": "File",
-				"file_name": "attachment_." + response.headers.get("Content-Type").split("/")[1],
+				"file_name": file_name,
 				"content": response.content,
 				"attached_to_doctype": "WABA WhatsApp Message",
 				"attached_to_name": self.name,
