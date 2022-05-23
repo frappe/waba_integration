@@ -56,7 +56,7 @@ def create_waba_whatsapp_message(message):
 	)
 
 	if message_type == "text":
-		message_data["body"] = message.get("text").get("body")
+		message_data["message_body"] = message.get("text").get("body")
 	elif message_type in ("image", "sticker", "document"):
 		message_data["media_id"] = message.get(message_type).get("id")
 		message_data["media_mime_type"] = message.get(message_type).get("mime_type")
