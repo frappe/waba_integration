@@ -42,6 +42,46 @@ class WABAWhatsAppMessage(Document):
 		else:
 			frappe.throw(response.json().get("error").get("message"))
 
+	@frappe.whitelist()
+	def download_media(self):
+		access_token = frappe.utils.password.get_decrypted_password(
+			"WABA Settings", "WABA Settings", "access_token"
+		)
+		api_base = frappe.db.get_single_value("WABA Settings", "api_base")
+		response = requests.get(
+			f"{api_base}/{self.media_id}",
+			headers={
+				"Authorization": "Bearer " + access_token,
+			},
+		)
+
+		if not response.ok:
+			frappe.throw("Error fetching media URL")
+
+		url = response.json().get("url")
+		response = requests.get(
+			url,
+			headers={
+				"Authorization": "Bearer " + access_token,
+			},
+		)
+
+		file_doc = frappe.get_doc(
+			{
+				"doctype": "File",
+				"file_name": "attachment_." + response.headers.get("Content-Type").split("/")[1],
+				"content": response.content,
+				"attached_to_doctype": "WABA WhatsApp Message",
+				"attached_to_name": self.name,
+				"attached_to_field": "media_file",
+			}
+		).insert()
+
+		self.set("media_file", file_doc.file_url)
+		self.save()
+
+		return file_doc.as_dict()
+
 
 def create_waba_whatsapp_message(message):
 	message_type = message.get("type")

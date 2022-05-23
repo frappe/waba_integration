@@ -20,7 +20,8 @@
   "media_mime_type",
   "column_break_9",
   "media_filename",
-  "media_caption"
+  "media_caption",
+  "media_file"
  ],
  "fields": [
   {
@@ -105,11 +106,16 @@
    "fieldname": "to",
    "fieldtype": "Data",
    "label": "To"
+  },
+  {
+   "fieldname": "media_file",
+   "fieldtype": "Attach",
+   "label": "Media File"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2022-05-23 13:51:21.280665",
+ "modified": "2022-05-23 16:33:11.118102",
  "modified_by": "Administrator",
  "module": "WhatsApp Bussiness API Integration",
  "name": "WABA WhatsApp Message",

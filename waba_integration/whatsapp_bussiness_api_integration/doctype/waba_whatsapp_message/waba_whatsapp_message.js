@@ -14,5 +14,28 @@ frappe.ui.form.on("WABA WhatsApp Message", {
           .then((m) => frm.refresh());
       });
     }
+
+    if (
+      ["Image", "Video", "Audio", "Document"].includes(frm.doc.message_type) &&
+      !frm.doc.media_file
+    ) {
+      const btn = frm.add_custom_button("Download Attachment File", () => {
+        frm
+          .call({
+            doc: frm.doc,
+            method: "download_media",
+            btn,
+          })
+          .then((data) => {
+            const file = data.message;
+            frm.refresh();
+            frappe.msgprint({
+              title: "Attachment downloaded successfully.",
+              message: `Attachment File: <a href="${file.file_url}" target="_blank">${file.file_name}</a>`,
+              indicator: "green",
+            });
+          });
+      });
+    }
   },
 });
