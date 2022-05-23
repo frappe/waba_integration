@@ -14,8 +14,8 @@ def handle():
 
 	try:
 		form_dict = frappe.local.form_dict
-		messages = form_dict["entry"][0]["changes"][0]["value"]["messages"]
-		statuses = form_dict["entry"][0]["changes"][0]["value"]["statuses"]
+		messages = form_dict["entry"][0]["changes"][0]["value"].get("messages", [])
+		statuses = form_dict["entry"][0]["changes"][0]["value"].get("statuses", [])
 
 		for status in statuses:
 			process_status_update(status)
