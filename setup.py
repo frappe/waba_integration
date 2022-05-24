@@ -9,7 +9,7 @@ from waba_integration import __version__ as version
 setup(
 	name="waba_integration",
 	version=version,
-	description="Work with WhatsApp Bussiness Cloud API from your Frappe site",
+	description="Work with WhatsApp Business Cloud API from your Frappe site",
 	author="Hussain Nagaria",
 	author_email="hussain@frappe.io",
 	packages=find_packages(),

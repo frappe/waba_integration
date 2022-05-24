@@ -1,1 +1,1 @@
-WhatsApp Bussiness API Integration
+WhatsApp Business API Integration
