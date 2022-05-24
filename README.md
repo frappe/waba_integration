@@ -1,6 +1,6 @@
-## WhatsApp Bussiness API Integration
+## WhatsApp Business API Integration
 
-Work with WhatsApp Bussiness Cloud API from your Frappe site
+Work with WhatsApp Business Cloud API from your Frappe site
 
 #### License
 

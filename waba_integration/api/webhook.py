@@ -1,5 +1,5 @@
 import frappe
-from waba_integration.whatsapp_bussiness_api_integration.doctype.waba_whatsapp_message.waba_whatsapp_message import (
+from waba_integration.whatsapp_business_api_integration.doctype.waba_whatsapp_message.waba_whatsapp_message import (
 	create_waba_whatsapp_message,
 	process_status_update,
 )
