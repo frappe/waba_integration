@@ -4,12 +4,17 @@
 import frappe
 import requests
 
+from typing import Dict
+from functools import lru_cache
 from frappe.model.document import Document
+
+
+MEDIA_TYPES = ("image", "sticker", "document", "audio", "video")
 
 
 class WABAWhatsAppMessage(Document):
 	@frappe.whitelist()
-	def send(self):
+	def send(self) -> Dict:
 		if not self.to:
 			frappe.throw("Recepient (`to`) is required to send message.")
 
@@ -45,22 +50,9 @@ class WABAWhatsAppMessage(Document):
 			frappe.throw(response.json().get("error").get("message"))
 
 	@frappe.whitelist()
-	def download_media(self):
-		access_token = frappe.utils.password.get_decrypted_password(
-			"WABA Settings", "WABA Settings", "access_token"
-		)
-		api_base = frappe.db.get_single_value("WABA Settings", "api_base")
-		response = requests.get(
-			f"{api_base}/{self.media_id}",
-			headers={
-				"Authorization": "Bearer " + access_token,
-			},
-		)
-
-		if not response.ok:
-			frappe.throw("Error fetching media URL")
-
-		url = response.json().get("url")
+	def download_media(self) -> Dict:
+		url = self.get_media_url()
+		access_token = self.get_access_token()
 		response = requests.get(
 			url,
 			headers={
@@ -68,9 +60,7 @@ class WABAWhatsAppMessage(Document):
 			},
 		)
 
-		file_name = self.media_filename or (
-			"attachment_." + response.headers.get("Content-Type").split("/")[1]
-		)
+		file_name = get_media_extention(self, response.headers.get("Content-Type"))
 		file_doc = frappe.get_doc(
 			{
 				"doctype": "File",
@@ -92,8 +82,32 @@ class WABAWhatsAppMessage(Document):
 
 		return file_doc.as_dict()
 
+	def get_media_url(self) -> str:
+		if not self.media_id:
+			frappe.throw("`media_id` is missing.")
 
-def create_waba_whatsapp_message(message):
+		api_base = "https://graph.facebook.com/v13.0"
+		access_token = self.get_access_token()
+		response = requests.get(
+			f"{api_base}/{self.media_id}",
+			headers={
+				"Authorization": "Bearer " + access_token,
+			},
+		)
+
+		if not response.ok:
+			frappe.throw("Error fetching media URL")
+
+		return response.json().get("url")
+
+	@lru_cache
+	def get_access_token(self) -> str:
+		return frappe.utils.password.get_decrypted_password(
+			"WABA Settings", "WABA Settings", "access_token"
+		)
+
+
+def create_waba_whatsapp_message(message: Dict) -> WABAWhatsAppMessage:
 	message_type = message.get("type")
 	message_data = frappe._dict(
 		{
@@ -107,7 +121,7 @@ def create_waba_whatsapp_message(message):
 
 	if message_type == "text":
 		message_data["message_body"] = message.get("text").get("body")
-	elif message_type in ("image", "sticker", "document"):
+	elif message_type in MEDIA_TYPES:
 		message_data["media_id"] = message.get(message_type).get("id")
 		message_data["media_mime_type"] = message.get(message_type).get("mime_type")
 		message_data["media_hash"] = message.get(message_type).get("sha256")
@@ -133,10 +147,16 @@ def create_waba_whatsapp_message(message):
 	return message_doc
 
 
-def process_status_update(status):
+def process_status_update(status: Dict):
 	message_id = status.get("id")
 	status = status.get("status")
 
 	frappe.db.set_value(
 		"WABA WhatsApp Message", {"id": message_id}, "status", status.title()
+	)
+
+
+def get_media_extention(message_doc: WABAWhatsAppMessage, content_type: str) -> str:
+	return message_doc.media_filename or (
+		"attachment_." + content_type.split(";")[0].split("/")[1]
 	)
