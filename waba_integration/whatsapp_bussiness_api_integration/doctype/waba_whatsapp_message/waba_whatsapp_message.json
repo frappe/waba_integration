@@ -81,6 +81,7 @@
    "label": "Media Caption"
   },
   {
+   "depends_on": "eval:doc.message_type!=\"Text\"",
    "fieldname": "media_information_section",
    "fieldtype": "Section Break",
    "label": "Media Information"
@@ -116,6 +117,7 @@
    "label": "Media File"
   },
   {
+   "depends_on": "eval:(doc.image_preview && doc.media_file)",
    "fieldname": "image_preview",
    "fieldtype": "Image",
    "label": "Image Preview",
@@ -135,7 +137,7 @@
  "image_field": "media_image",
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2022-05-23 23:41:44.077886",
+ "modified": "2022-05-24 12:36:51.299295",
  "modified_by": "Administrator",
  "module": "WhatsApp Bussiness API Integration",
  "name": "WABA WhatsApp Message",
