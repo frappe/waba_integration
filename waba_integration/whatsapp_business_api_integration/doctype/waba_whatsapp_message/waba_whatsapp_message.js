@@ -16,6 +16,7 @@ frappe.ui.form.on("WABA WhatsApp Message", {
     }
 
     if (
+      frm.doc.type === "Incoming" &&
       ["Image", "Video", "Audio", "Document"].includes(frm.doc.message_type) &&
       !frm.doc.media_file
     ) {
@@ -41,6 +42,29 @@ frappe.ui.form.on("WABA WhatsApp Message", {
     if (frm.doc.preview_html) {
       let wrapper = frm.get_field("preview_html_rendered").$wrapper;
       wrapper.html(frm.doc.preview_html);
+    }
+
+    if (
+      frm.doc.type === "Outgoing" &&
+      frm.doc.media_file &&
+      !frm.doc.media_uploaded
+    ) {
+      const btn = frm.add_custom_button("Upload Attachment File", () => {
+        frm
+          .call({
+            doc: frm.doc,
+            method: "upload_media",
+            btn,
+          })
+          .then(() => {
+            frm.refresh();
+            frappe.msgprint({
+              title: "Attachment uploaded successfully.",
+              message: "You can send this message now!",
+              indicator: "green",
+            });
+          });
+      });
     }
   },
 });

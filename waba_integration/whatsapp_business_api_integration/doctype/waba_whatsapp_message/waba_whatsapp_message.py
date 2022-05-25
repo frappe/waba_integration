@@ -3,6 +3,7 @@
 
 import frappe
 import requests
+import mimetypes
 
 from typing import Dict
 from functools import lru_cache
@@ -123,6 +124,46 @@ class WABAWhatsAppMessage(Document):
 			"WABA Settings", "WABA Settings", "access_token"
 		)
 
+	@frappe.whitelist()
+	def upload_media(self):
+		if not self.media_file:
+			frappe.throw("`media_file` is required to upload media.")
+
+		media_file_path = frappe.get_doc(
+			"File", {"file_url": self.media_file}
+		).get_full_path()
+		access_token = self.get_access_token()
+		api_base = "https://graph.facebook.com/v13.0"
+		phone_number_id = frappe.db.get_single_value("WABA Settings", "phone_number_id")
+
+		if not self.media_mime_type:
+			self.media_mime_type = mimetypes.guess_type(self.media_file)[0]
+
+		# Way to send multi-part form data
+		# Ref: https://stackoverflow.com/a/35974071
+		form_data = {
+			"file": (
+				"file",
+				open(media_file_path, "rb"),
+				self.media_mime_type,
+			),
+			"messaging_product": (None, "whatsapp"),
+			"type": (None, self.media_mime_type),
+		}
+		response = requests.post(
+			f"{api_base}/{phone_number_id}/media",
+			files=form_data,
+			headers={
+				"Authorization": "Bearer " + access_token,
+			},
+		)
+
+		if response.ok:
+			self.media_id = response.json().get("id")
+			self.media_uploaded = True
+			self.save(ignore_permissions=True)
+		else:
+			frappe.throw(response.json().get("error").get("message"))
 
 def create_waba_whatsapp_message(message: Dict) -> WABAWhatsAppMessage:
 	message_type = message.get("type")

@@ -26,7 +26,8 @@
   "column_break_9",
   "media_filename",
   "media_caption",
-  "media_file"
+  "media_file",
+  "media_uploaded"
  ],
  "fields": [
   {
@@ -146,12 +147,19 @@
    "fieldname": "preview_html_rendered",
    "fieldtype": "HTML",
    "label": "Preview HTML Rendered"
+  },
+  {
+   "default": "0",
+   "fieldname": "media_uploaded",
+   "fieldtype": "Check",
+   "label": "Media Uploaded",
+   "read_only": 1
   }
  ],
  "image_field": "media_image",
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2022-05-25 05:53:46.070248",
+ "modified": "2022-05-25 18:31:07.187225",
  "modified_by": "Administrator",
  "module": "WhatsApp Business API Integration",
  "name": "WABA WhatsApp Message",
