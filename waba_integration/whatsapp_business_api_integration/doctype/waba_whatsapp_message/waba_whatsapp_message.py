@@ -221,7 +221,7 @@ def create_waba_whatsapp_message(message: Dict) -> WABAWhatsAppMessage:
 		{
 			"doctype": "WABA WhatsApp Message",
 			"type": "Incoming",
-			"status": "Recieved",
+			"status": "Received",
 			"from": message.get("from"),
 			"id": message.get("id"),
 			"message_type": message_type.title(),
