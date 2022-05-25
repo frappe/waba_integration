@@ -15,7 +15,7 @@
   "attachment_preferences_section",
   "automatically_download_images",
   "column_break_9",
-  "automatically_download_documents"
+  "automatically_download_audio"
  ],
  "fields": [
   {
@@ -53,12 +53,6 @@
    "label": "Automatically Download Images"
   },
   {
-   "default": "0",
-   "fieldname": "automatically_download_documents",
-   "fieldtype": "Check",
-   "label": "Automatically Download Documents"
-  },
-  {
    "fieldname": "column_break_4",
    "fieldtype": "Column Break"
   },
@@ -70,12 +64,18 @@
   {
    "fieldname": "column_break_9",
    "fieldtype": "Column Break"
+  },
+  {
+   "default": "0",
+   "fieldname": "automatically_download_audio",
+   "fieldtype": "Check",
+   "label": "Automatically Download Audio"
   }
  ],
  "index_web_pages_for_search": 1,
  "issingle": 1,
  "links": [],
- "modified": "2022-05-23 18:24:16.785303",
+ "modified": "2022-05-25 06:01:53.921228",
  "modified_by": "Administrator",
  "module": "WhatsApp Business API Integration",
  "name": "WABA Settings",

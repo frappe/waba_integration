@@ -152,14 +152,22 @@ def create_waba_whatsapp_message(message: Dict) -> WABAWhatsAppMessage:
 	wants_automatic_image_downloads = frappe.db.get_single_value(
 		"WABA Settings", "automatically_download_images"
 	)
-	if message_doc.message_type == "Image" and wants_automatic_image_downloads:
+
+	wants_automatic_audio_downloads = frappe.db.get_single_value(
+		"WABA Settings", "automatically_download_audio"
+	)
+	if (message_doc.message_type == "Image" and wants_automatic_image_downloads) or (
+		message_doc.message_type == "Audio" and wants_automatic_audio_downloads
+	):
 		try:
 			current_user = frappe.session.user
 			frappe.set_user("Administrator")
 			message_doc.download_media()
 			frappe.set_user(current_user)
 		except:
-			frappe.log_error("WABA: Problem downloading image", frappe.get_traceback())
+			frappe.log_error(
+				f"WABA: Problem downloading {message_doc.message_type}", frappe.get_traceback()
+			)
 
 	return message_doc
 
