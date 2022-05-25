@@ -44,15 +44,31 @@ class WABAWhatsAppMessage(Document):
 
 		endpoint = f"{api_base}/{phone_number_id}/messages"
 
+		response_data = {
+			"messaging_product": "whatsapp",
+			"recipient_type": "individual",
+			"to": self.to,
+			"type": self.message_type.lower(),
+		}
+
+		if self.message_type == "Text":
+			response_data["text"] = {"preview_url": False, "body": self.message_body}
+
+		if self.message_type in ("Audio", "Image", "Video", "Document"):
+			if not self.media_id:
+				frappe.throw("Please attach and upload the media before sending this message.")
+
+			response_data[self.message_type.lower()] = {
+				"id": self.media_id,
+			}
+
+			if self.message_type == "Document":
+				response_data[self.message_type.lower()]["filename"] = self.media_filename
+				response_data[self.message_type.lower()]["caption"] = self.media_caption
+
 		response = requests.post(
 			endpoint,
-			json={
-				"messaging_product": "whatsapp",
-				"recipient_type": "individual",
-				"to": self.to,
-				"type": "text",
-				"text": {"preview_url": False, "body": self.message_body},
-			},
+			json=response_data,
 			headers={
 				"Authorization": "Bearer " + access_token,
 				"Content-Type": "application/json",
@@ -164,6 +180,7 @@ class WABAWhatsAppMessage(Document):
 			self.save(ignore_permissions=True)
 		else:
 			frappe.throw(response.json().get("error").get("message"))
+
 
 def create_waba_whatsapp_message(message: Dict) -> WABAWhatsAppMessage:
 	message_type = message.get("type")
