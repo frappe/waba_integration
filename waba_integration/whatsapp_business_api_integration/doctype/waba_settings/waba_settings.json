@@ -8,7 +8,6 @@
  "field_order": [
   "access_token",
   "phone_number_id",
-  "api_base",
   "column_break_4",
   "business_account_id",
   "webhook_verify_token",
@@ -40,13 +39,6 @@
    "label": "Webhook Verify Token"
   },
   {
-   "default": "https://graph.facebook.com/v13.0",
-   "fieldname": "api_base",
-   "fieldtype": "Data",
-   "label": "API Base",
-   "options": "URL"
-  },
-  {
    "default": "0",
    "fieldname": "automatically_download_images",
    "fieldtype": "Check",
@@ -75,7 +67,7 @@
  "index_web_pages_for_search": 1,
  "issingle": 1,
  "links": [],
- "modified": "2022-05-25 06:01:53.921228",
+ "modified": "2022-05-25 06:04:53.477667",
  "modified_by": "Administrator",
  "module": "WhatsApp Business API Integration",
  "name": "WABA Settings",

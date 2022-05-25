@@ -38,7 +38,7 @@ class WABAWhatsAppMessage(Document):
 		access_token = frappe.utils.password.get_decrypted_password(
 			"WABA Settings", "WABA Settings", "access_token"
 		)
-		api_base = frappe.db.get_single_value("WABA Settings", "api_base")
+		api_base = "https://graph.facebook.com/v13.0"
 		phone_number_id = frappe.db.get_single_value("WABA Settings", "phone_number_id")
 
 		endpoint = f"{api_base}/{phone_number_id}/messages"
