@@ -190,6 +190,30 @@ class WABAWhatsAppMessage(Document):
 		else:
 			frappe.throw(response.json().get("error").get("message"))
 
+	@frappe.whitelist()
+	def mark_as_seen(self):
+		if self.type != "Incoming":
+			frappe.throw("Only incoming messages can be marked as seen.")
+
+		phone_number_id = frappe.db.get_single_value("WABA Settings", "phone_number_id")
+		endpoint = f"https://graph.facebook.com/v13.0/{phone_number_id}/messages"
+		access_token = self.get_access_token()
+
+		response = requests.post(
+			endpoint,
+			json={"messaging_product": "whatsapp", "status": "read", "message_id": self.id},
+			headers={
+				"Authorization": "Bearer " + access_token,
+				"Content-Type": "application/json",
+			},
+		)
+
+		if response.ok:
+			self.status = "Marked As Seen"
+			self.save()
+		else:
+			frappe.throw(response.json().get("error").get("message"))
+
 
 def create_waba_whatsapp_message(message: Dict) -> WABAWhatsAppMessage:
 	message_type = message.get("type")
@@ -197,6 +221,7 @@ def create_waba_whatsapp_message(message: Dict) -> WABAWhatsAppMessage:
 		{
 			"doctype": "WABA WhatsApp Message",
 			"type": "Incoming",
+			"status": "Recieved",
 			"from": message.get("from"),
 			"id": message.get("id"),
 			"message_type": message_type.title(),

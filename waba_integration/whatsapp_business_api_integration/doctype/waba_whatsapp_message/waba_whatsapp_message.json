@@ -36,7 +36,7 @@
    "fieldtype": "Select",
    "in_list_view": 1,
    "label": "Status",
-   "options": "Pending\nSent\nDelivered\nRead"
+   "options": "Pending\nSent\nDelivered\nRead\nReceived\nMarked As Seen"
   },
   {
    "default": "Outgoing",
@@ -160,7 +160,7 @@
  "image_field": "media_image",
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2022-05-25 21:39:56.640526",
+ "modified": "2022-05-25 21:44:09.684822",
  "modified_by": "Administrator",
  "module": "WhatsApp Business API Integration",
  "name": "WABA WhatsApp Message",

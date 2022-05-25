@@ -66,5 +66,17 @@ frappe.ui.form.on("WABA WhatsApp Message", {
           });
       });
     }
+
+    if (frm.doc.type === "Incoming" && frm.doc.status !== "Marked As Seen") {
+      const btn = frm.add_custom_button("Mark As Seen", () => {
+        frm
+          .call({
+            doc: frm.doc,
+            method: "mark_as_seen",
+            btn,
+          })
+          .then(() => frm.refresh());
+      });
+    }
   },
 });
