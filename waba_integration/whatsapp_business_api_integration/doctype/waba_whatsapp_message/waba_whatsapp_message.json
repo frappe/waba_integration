@@ -9,7 +9,6 @@
   "image_preview",
   "preview_html_rendered",
   "preview_html",
-  "media_image",
   "section_break_3",
   "status",
   "from",
@@ -27,6 +26,7 @@
   "media_filename",
   "media_caption",
   "media_file",
+  "media_image",
   "media_uploaded"
  ],
  "fields": [
@@ -115,21 +115,22 @@
    "label": "To"
   },
   {
+   "depends_on": "eval:!(doc.type==\"Outgoing\"&&doc.message_type==\"Image\")",
    "fieldname": "media_file",
    "fieldtype": "Attach",
    "label": "Media File"
   },
   {
-   "depends_on": "eval:(doc.image_preview && doc.media_file)",
+   "depends_on": "eval:(doc.message_type==\"Image\"&&doc.media_file)",
    "fieldname": "image_preview",
    "fieldtype": "Image",
    "label": "Image Preview",
    "options": "media_image"
   },
   {
+   "depends_on": "eval:doc.type==\"Outgoing\"&&doc.message_type==\"Image\"",
    "fieldname": "media_image",
    "fieldtype": "Attach Image",
-   "hidden": 1,
    "label": "Media Image"
   },
   {
@@ -159,7 +160,7 @@
  "image_field": "media_image",
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2022-05-25 18:31:07.187225",
+ "modified": "2022-05-25 21:39:56.640526",
  "modified_by": "Administrator",
  "module": "WhatsApp Business API Integration",
  "name": "WABA WhatsApp Message",

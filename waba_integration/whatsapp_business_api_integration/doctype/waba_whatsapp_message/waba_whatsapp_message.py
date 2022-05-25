@@ -15,6 +15,8 @@ MEDIA_TYPES = ("image", "sticker", "document", "audio", "video")
 
 class WABAWhatsAppMessage(Document):
 	def validate(self):
+		self.validate_image_attachment()
+
 		if self.message_type == "Audio" and self.media_file:
 			self.preview_html = f"""
 				<audio controls>
@@ -30,6 +32,13 @@ class WABAWhatsAppMessage(Document):
 					Your browser does not support the video element.
 				</video>
 			"""
+
+	def validate_image_attachment(self):
+		if self.media_image:
+			self.media_file = self.media_image
+
+		if self.media_file and self.message_type == "Image":
+			self.media_image = self.media_file
 
 	@frappe.whitelist()
 	def send(self) -> Dict:
