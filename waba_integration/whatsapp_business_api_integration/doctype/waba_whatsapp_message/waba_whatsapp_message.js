@@ -37,5 +37,10 @@ frappe.ui.form.on("WABA WhatsApp Message", {
           });
       });
     }
+
+    if (frm.doc.preview_html) {
+      let wrapper = frm.get_field("preview_html_rendered").$wrapper;
+      wrapper.html(frm.doc.preview_html);
+    }
   },
 });

@@ -7,6 +7,8 @@
  "engine": "InnoDB",
  "field_order": [
   "image_preview",
+  "preview_html_rendered",
+  "preview_html",
   "media_image",
   "section_break_3",
   "status",
@@ -132,12 +134,24 @@
   {
    "fieldname": "section_break_3",
    "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "preview_html",
+   "fieldtype": "HTML Editor",
+   "hidden": 1,
+   "label": "Preview HTML"
+  },
+  {
+   "depends_on": "eval:doc.message_type==\"Audio\"||doc.message_type==\"Video\"",
+   "fieldname": "preview_html_rendered",
+   "fieldtype": "HTML",
+   "label": "Preview HTML Rendered"
   }
  ],
  "image_field": "media_image",
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2022-05-24 12:36:51.299295",
+ "modified": "2022-05-25 05:53:46.070248",
  "modified_by": "Administrator",
  "module": "WhatsApp Business API Integration",
  "name": "WABA WhatsApp Message",
