@@ -55,6 +55,7 @@
    "unique": 1
   },
   {
+   "depends_on": "eval:doc.type===\"Incoming\"",
    "fieldname": "from",
    "fieldtype": "Link",
    "label": "From",
@@ -115,6 +116,7 @@
    "label": "Message Body"
   },
   {
+   "depends_on": "eval:doc.type===\"Outgoing\"",
    "fieldname": "to",
    "fieldtype": "Link",
    "label": "To",
@@ -166,7 +168,7 @@
  "image_field": "media_image",
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2022-05-26 23:47:56.261027",
+ "modified": "2022-05-26 23:52:27.287967",
  "modified_by": "Administrator",
  "module": "WhatsApp Business API Integration",
  "name": "WABA WhatsApp Message",
