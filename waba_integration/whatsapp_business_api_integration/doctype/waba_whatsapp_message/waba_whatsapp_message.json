@@ -43,7 +43,8 @@
    "fieldname": "type",
    "fieldtype": "Select",
    "label": "Type",
-   "options": "Incoming\nOutgoing"
+   "options": "Incoming\nOutgoing",
+   "read_only": 1
   },
   {
    "fieldname": "id",
@@ -67,7 +68,8 @@
   {
    "fieldname": "media_hash",
    "fieldtype": "Data",
-   "label": "Media Hash"
+   "label": "Media Hash",
+   "read_only": 1
   },
   {
    "fieldname": "media_mime_type",
@@ -162,7 +164,7 @@
  "image_field": "media_image",
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2022-05-26 23:25:06.345429",
+ "modified": "2022-05-26 23:46:02.610044",
  "modified_by": "Administrator",
  "module": "WhatsApp Business API Integration",
  "name": "WABA WhatsApp Message",
