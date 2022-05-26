@@ -55,8 +55,9 @@
   },
   {
    "fieldname": "from",
-   "fieldtype": "Data",
-   "label": "From"
+   "fieldtype": "Link",
+   "label": "From",
+   "options": "WABA WhatsApp Contact"
   },
   {
    "fieldname": "media_id",
@@ -111,8 +112,9 @@
   },
   {
    "fieldname": "to",
-   "fieldtype": "Data",
-   "label": "To"
+   "fieldtype": "Link",
+   "label": "To",
+   "options": "WABA WhatsApp Contact"
   },
   {
    "depends_on": "eval:!(doc.type==\"Outgoing\"&&doc.message_type==\"Image\")",
@@ -160,7 +162,7 @@
  "image_field": "media_image",
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2022-05-25 21:44:09.684822",
+ "modified": "2022-05-26 23:25:06.345429",
  "modified_by": "Administrator",
  "module": "WhatsApp Business API Integration",
  "name": "WABA WhatsApp Message",

@@ -217,6 +217,17 @@ class WABAWhatsAppMessage(Document):
 
 def create_waba_whatsapp_message(message: Dict) -> WABAWhatsAppMessage:
 	message_type = message.get("type")
+
+	# Create whatsapp contact doc if not exists
+	received_from = message.get("from")
+	if not frappe.db.exists("WABA WhatsApp Contact", {"name": received_from}):
+		frappe.get_doc(
+			{
+				"doctype": "WABA WhatsApp Contact",
+				"whatsapp_id": received_from,
+			}
+		).insert(ignore_permissions=True)
+
 	message_data = frappe._dict(
 		{
 			"doctype": "WABA WhatsApp Message",
