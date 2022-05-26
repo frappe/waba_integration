@@ -27,8 +27,19 @@
   }
  ],
  "index_web_pages_for_search": 1,
- "links": [],
- "modified": "2022-05-26 23:21:32.891274",
+ "links": [
+  {
+   "group": "Received Messages",
+   "link_doctype": "WABA WhatsApp Message",
+   "link_fieldname": "from"
+  },
+  {
+   "group": "Sent Messages",
+   "link_doctype": "WABA WhatsApp Message",
+   "link_fieldname": "to"
+  }
+ ],
+ "modified": "2022-05-26 23:42:54.548853",
  "modified_by": "Administrator",
  "module": "WhatsApp Business API Integration",
  "name": "WABA WhatsApp Contact",
