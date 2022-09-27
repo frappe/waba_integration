@@ -1,0 +1,88 @@
+{
+ "cards_label": "Reports & Masters",
+ "category": "Modules",
+ "charts": [],
+ "charts_label": "",
+ "creation": "2022-09-27 17:41:47.382370",
+ "developer_mode_only": 0,
+ "disable_user_customization": 0,
+ "docstatus": 0,
+ "doctype": "Workspace",
+ "extends_another_page": 0,
+ "hide_custom": 0,
+ "idx": 0,
+ "is_default": 0,
+ "is_standard": 1,
+ "label": "WhatsApp Business",
+ "links": [
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Communication",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Card Break"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "WABA WhatsApp Contact",
+   "link_to": "WABA WhatsApp Contact",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "WABA WhatsApp Message",
+   "link_to": "WABA WhatsApp Message",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Process Tracking",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Card Break"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "WABA Message Status Update",
+   "link_to": "WABA Message Status Update",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "WABA Webhook Log",
+   "link_to": "WABA Webhook Log",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  }
+ ],
+ "modified": "2022-09-27 17:47:01.288226",
+ "modified_by": "Administrator",
+ "module": "WhatsApp Business API Integration",
+ "name": "WhatsApp Business",
+ "onboarding": "",
+ "owner": "Administrator",
+ "pin_to_bottom": 0,
+ "pin_to_top": 0,
+ "shortcuts": [
+  {
+   "doc_view": "",
+   "label": "WABA Settings",
+   "link_to": "WABA Settings",
+   "type": "DocType"
+  }
+ ],
+ "shortcuts_label": "Your Shortcuts"
+}
