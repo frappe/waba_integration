@@ -71,7 +71,7 @@ The temporary token generated above is only valid for 24 hours and is only suita
 
 ## Sending Your First Message
 
-You can use the **WABA WhatsApp Message** doctype to create and send messaged. Whenever you receive a new message, you will find it here.
+You can use the **WABA WhatsApp Message** doctype to create and send messages. Whenever you receive a new message, you will find it here.
 
 ## Debugging / Webhook Logs
 
