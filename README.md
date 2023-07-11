@@ -5,7 +5,7 @@ Work with WhatsApp Business Cloud API from your Frappe site. Automate sending an
 ## Installation
 
 ```bash
-bench get-app NagariaHussain/waba_integration
+bench get-app waba_integration
 bench --site <site-name> install-app waba_integration
 ```
 
